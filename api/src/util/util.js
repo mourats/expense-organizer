@@ -11,8 +11,9 @@ const validResult = (object, res) => {
     res.status(404).send({
       message: 'Object not found!',
     });
-    return true;
+    return false;
   }
+  return true;
 };
 
 const treatError = (error, res) => {

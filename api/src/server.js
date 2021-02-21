@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 require('./routes/usuarioRoute.js')(app);
 require('./routes/periodoRoute.js')(app);
 require('./routes/tipoPagamentoRoute.js')(app);
+require('./routes/despesasRoute.js')(app);
 
 // set port, listen for requests
 app.listen(3000, () => {

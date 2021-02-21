@@ -7,10 +7,11 @@ const validContent = (req) => {
 };
 
 const validResult = (object, res) => {
-  if (validValue(object)) {
-    res.status(400).send({
+  if (!validValue(object)) {
+    res.status(404).send({
       message: 'Object not found!',
     });
+    return true;
   }
 };
 

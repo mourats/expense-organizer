@@ -26,7 +26,7 @@ class UsuarioController {
     validContent(req);
     try {
       const usuario = await Usuario.findByPk(req.params.id);
-      validResult(usuario, res);
+      if (validResult(usuario, res)) return;
       res.send(usuario);
     } catch (error) {
       treatError(error, res);
@@ -34,15 +34,13 @@ class UsuarioController {
   }
 
   async update(req, res) {
-    console.log(req.params);
+    validContent(req);
 
     try {
-      const usuario = await Usuario.update(req.params.id, {
-        where: { id: req.params.id },
-        returning: true,
-      });
-      console.log(usuario);
-      validResult(usuario, res);
+      const usuario = await Usuario.findByPk(req.params.id);
+      if (validResult(usuario, res)) return;
+      usuario.update();
+      await usuario.update(req.body);
       res.send(usuario);
     } catch (error) {
       treatError(error, res);
@@ -52,7 +50,7 @@ class UsuarioController {
   async delete(req, res) {
     try {
       const usuario = await Usuario.findByPk(req.params.id);
-      validResult(usuario, res);
+      if (validResult(usuario, res)) return;
       await usuario.destroy();
       res.status(200).send();
     } catch (error) {

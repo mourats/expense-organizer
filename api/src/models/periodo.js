@@ -1,32 +1,28 @@
 const connector = require('../config/database');
 const Sequelize = require('sequelize');
 
-class Usuario extends Sequelize.Model {}
+class Periodo extends Sequelize.Model {}
 
-Usuario.init(
+Periodo.init(
   {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    nome: {
-      type: Sequelize.STRING(60),
+    dataInicio: {
+      type: Sequelize.DATE,
       allowNull: false,
     },
-    sobrenome: {
-      type: Sequelize.STRING(60),
+    dataFim: {
+      type: Sequelize.DATE,
       allowNull: false,
-    },
-    email: {
-      type: Sequelize.STRING(60),
-      allowNull: true,
     },
   },
   {
     sequelize: connector,
-    modelName: 'usuarios',
+    modelName: 'periodos',
   }
 );
 
-module.exports = Usuario;
+module.exports = Periodo;

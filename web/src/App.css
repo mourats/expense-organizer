@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('antd/dist/antd.css');
 
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -20,8 +21,14 @@ body {
 }
 
 .container {
+  min-height: 85vh;
   margin: 30px auto;
-  width: 350px;
+  width: 500px;
+}
+
+.scrollable {
+  overflow-y: auto;
+  height: 600px;
 }
 
 h1 {
@@ -83,21 +90,19 @@ input[type='number'] {
   border-radius: 2px;
   display: block;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px;
   width: 100%;
 }
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
   display: block;
   font-size: 16px;
   margin: 10px 0 30px;
-  padding: 10px;
-  width: 100%;
+  width: 50%;
 }
 
 .btn:focus,
@@ -148,10 +153,4 @@ input[type='number'] {
 
 .list li:hover .delete-btn {
   opacity: 1;
-}
-
-@media (max-width: 320px) {
-  .container {
-    width: 300px;
-  }
 }

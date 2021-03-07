@@ -2,17 +2,17 @@ module.exports = (app) => {
   const tipoPagamentos = require('../controllers/tipoPagamentoController');
 
   // Create a new tipoPagamento
-  app.post('/tipoPagamentos', tipoPagamentos.create);
+  app.post('/tipo-pagamentos', tipoPagamentos.create);
 
   // Retrieve all tipoPagamentos
-  app.get('/tipoPagamentos', tipoPagamentos.all);
+  app.get('/tipo-pagamentos', tipoPagamentos.all);
 
   // Retrieve a single tipoPagamento with id
-  app.get('/tipoPagamentos/:id', tipoPagamentos.get);
+  app.get('/tipo-pagamentos/:id', tipoPagamentos.get);
 
   // Update a tipoPagamento with id
-  app.put('/tipoPagamentos/:id', tipoPagamentos.update);
+  app.put('/tipo-pagamentos/:id', tipoPagamentos.update);
 
   // Delete a tipoPagamento with id
-  app.delete('/tipoPagamentos/:id', tipoPagamentos.delete);
+  app.delete('/tipo-pagamentos/:id', tipoPagamentos.delete);
 };

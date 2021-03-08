@@ -16,17 +16,8 @@ class UserIndex extends IndexGeneric {
 
   formModalContent() {
     if (this.store.isModalVisible) {
-      const actionType = this.store.selected ? 'edit' : 'new';
-      return (
-        <UserForm
-          object={this.store.selected}
-          actionType={actionType}
-          isModalVisible={this.store.isModalVisible}
-          changeModalVisible={() =>
-            (this.store.isModalVisible = !this.store.isModalVisible)
-          }
-        />
-      );
+      const actionType = this.store.object ? 'edit' : 'new';
+      return <UserForm store={this.store} actionType={actionType} />;
     }
   }
 

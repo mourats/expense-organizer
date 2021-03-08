@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.get('/periodos/:id', periodos.get);
 
   // Update a periodo with id
-  app.put('/periodos/:id', periodos.update);
+  app.put('/periodos', periodos.update);
 
   // Delete a periodo with id
   app.delete('/periodos/:id', periodos.delete);

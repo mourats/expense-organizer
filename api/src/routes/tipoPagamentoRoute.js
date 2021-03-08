@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.get('/tipo-pagamentos/:id', tipoPagamentos.get);
 
   // Update a tipoPagamento with id
-  app.put('/tipo-pagamentos/:id', tipoPagamentos.update);
+  app.put('/tipo-pagamentos', tipoPagamentos.update);
 
   // Delete a tipoPagamento with id
   app.delete('/tipo-pagamentos/:id', tipoPagamentos.delete);

@@ -18,7 +18,7 @@ class IndexGeneric extends React.Component {
   }
 
   showForm(row) {
-    this.store.selected = row;
+    this.store.object = row;
     this.store.isModalVisible = true;
   }
 

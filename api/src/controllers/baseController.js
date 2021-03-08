@@ -45,7 +45,7 @@ class BaseController {
     validContent(req);
 
     try {
-      const object = await this.Model.findByPk(req.params.id);
+      const object = await this.Model.findByPk(req.body.id);
       if (!validResult(object, res)) return;
       await object.update(req.body);
       res.send(object);

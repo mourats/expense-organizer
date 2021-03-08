@@ -2,6 +2,8 @@ import { action, computed, observable, runInAction } from 'mobx';
 import { message } from 'antd';
 
 class IndexBase {
+  @observable isModalVisible = false;
+  @observable selected;
   @observable service;
   @observable loading;
   @observable lista = [];
@@ -34,7 +36,7 @@ class IndexBase {
       })
       .catch((error) => {
         runInAction('Load User Error', () => {
-          // message.error(error.response.data);
+          message.error(error.response.data);
           this.loading = false;
           console.log(error);
         });
@@ -46,9 +48,8 @@ class IndexBase {
     this.service
       .delete(row.id)
       .then(() => {
-        debugger;
         message.success('Registro excluído com sucesso');
-        // this.load();
+        this.load();
       })
       .catch((error) => {
         message.error(error.response.data);

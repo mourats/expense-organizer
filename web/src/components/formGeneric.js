@@ -8,12 +8,12 @@ class FormGeneric extends React.Component {
     this.onFinish = this.onFinish.bind(this);
   }
 
-  onFinish = (values) => {
-    this.store.save(values, this.props.actionType);
+  onFinish = () => {
+    this.store.save(this.props.actionType, this.props.changeModalVisible);
   };
 
   componentDidMount() {
-    this.store.initialize(this.props.id);
+    this.store.initialize(this.props.object);
   }
 }
 

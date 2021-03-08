@@ -9,11 +9,10 @@ class ServiceBase {
     this.getAll = this.getAll.bind(this);
     this.get = this.get.bind(this);
     this.save = this.save.bind(this);
-    this.delete = this.getAll.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   getAll() {
-    debugger;
     return axios.get(`${ends.baseAPIUrl}/${this.endPoint}`);
   }
 
@@ -29,16 +28,15 @@ class ServiceBase {
   }
 
   create = (object) => {
-    return axios.post(`${envs.baseAPIUrl}/${this.endPoint}`, object);
+    return axios.post(`${ends.baseAPIUrl}/${this.endPoint}`, object);
   };
 
   update = (object) => {
-    return axios.put(`${envs.baseAPIUrl}/${this.endPoint}`, object);
+    return axios.put(`${ends.baseAPIUrl}/${this.endPoint}`, object);
   };
 
   delete(id) {
-    debugger;
-    return axios.delete(`${envs.baseAPIUrl}/${this.endPoint}/${id}`);
+    return axios.delete(`${ends.baseAPIUrl}/${this.endPoint}/${id}`);
   }
 }
 

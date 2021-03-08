@@ -1,17 +1,9 @@
-import { action, observable, runInAction, toJS } from 'mobx';
-import { message } from 'antd';
 import UserService from '../../services/userService';
+import FormBase from '../formBase';
 
-class UserFormStore {
-  @observable loading;
+class UserFormStore extends FormBase {
   constructor() {
-    this.save = this.save.bind(this);
-  }
-
-  @action
-  save(values, actionType) {
-    debugger;
-    message.success('SUCESS');
+    super(UserService);
   }
 }
 export default UserFormStore;

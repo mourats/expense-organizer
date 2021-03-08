@@ -4,12 +4,30 @@ import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import UserIndexStore from '../../stores/user/index';
 import IndexGeneric from '../indexGeneric';
+import UserForm from './form';
 
 @observer
 class UserIndex extends IndexGeneric {
   constructor(props) {
     super(props);
     this.store = new UserIndexStore();
+    this.formModalContent = this.formModalContent.bind(this);
+  }
+
+  formModalContent() {
+    if (this.store.isModalVisible) {
+      const actionType = this.store.selected ? 'edit' : 'new';
+      return (
+        <UserForm
+          object={this.store.selected}
+          actionType={actionType}
+          isModalVisible={this.store.isModalVisible}
+          changeModalVisible={() =>
+            (this.store.isModalVisible = !this.store.isModalVisible)
+          }
+        />
+      );
+    }
   }
 
   render() {
@@ -41,10 +59,14 @@ class UserIndex extends IndexGeneric {
     if (this.store.loading) return <Spin />;
 
     return (
-      <>
+      <div className='scrollable'>
         <Row>
           <Col offset={21}>
-            <Button type='primary' icon={<PlusOutlined />}>
+            <Button
+              type='primary'
+              icon={<PlusOutlined />}
+              onClick={() => this.showForm()}
+            >
               Novo
             </Button>
           </Col>
@@ -55,7 +77,8 @@ class UserIndex extends IndexGeneric {
           dataSource={this.store.listaComKey}
           loading={this.store.loading}
         />
-      </>
+        {this.formModalContent()}
+      </div>
     );
   }
 }

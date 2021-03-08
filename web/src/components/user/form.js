@@ -1,38 +1,18 @@
 import React from 'react';
 import { Button, Form, Input, Spin } from 'antd';
 import { observer } from 'mobx-react';
-import UserFormStore from '../stores/UserFormStore';
+import UserFormStore from '../../stores/user/form';
+import { validateMessages, layout } from '../../constants/DadosEstaticos';
+import FormGeneric from '../formGeneric';
 
 @observer
-class UserForm extends React.Component {
+class UserForm extends FormGeneric {
   constructor(props) {
     super(props);
     this.store = new UserFormStore();
-    this.onFinish = this.onFinish.bind(this);
-    this.store.load();
   }
 
-  onFinish = (values) => {
-    this.store.save(values);
-  };
-
   render() {
-    const validateMessages = {
-      required: '${label} é obrigatório!',
-      types: {
-        email: '${label} não é válido!',
-        number: '${label} não um número válido!',
-      },
-      number: {
-        range: '${label} deve ser entre ${min} e ${max}',
-      },
-    };
-
-    const layout = {
-      labelCol: { span: 8 },
-      wrapperCol: { span: 30 },
-    };
-
     if (this.store.loading) return <Spin />;
 
     return (
@@ -64,9 +44,9 @@ class UserForm extends React.Component {
         >
           <Input placeholder='Digite o email' />
         </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+        <Form.Item wrapperCol={{ offset: 8 }}>
           <Button className='btn' type='primary' htmlType='submit'>
-            Submit
+            Salvar
           </Button>
         </Form.Item>
       </Form>

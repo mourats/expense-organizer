@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from './components/Header';
-import UserForm from './components/UserForm';
+import UserForm from './components/user/index';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 import './App.css';

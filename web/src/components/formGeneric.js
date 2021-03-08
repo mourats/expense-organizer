@@ -11,10 +11,6 @@ class FormGeneric extends React.Component {
   onFinish = () => {
     this.store.save(this.props.actionType, this.props.changeModalVisible);
   };
-
-  componentDidMount() {
-    this.store.initialize(this.props.object);
-  }
 }
 
 FormGeneric.displayName = 'FormGeneric';

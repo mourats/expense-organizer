@@ -11,13 +11,11 @@ class UserForm extends FormGeneric {
   constructor(props) {
     super(props);
     this.store = new UserFormStore();
+    this.store.initialize(props.object);
   }
 
   render() {
-    if (this.store.loading) return <Spin />;
     const { isModalVisible, changeModalVisible, actionType } = this.props;
-
-    if (this.store.loading) return <Spin />;
 
     return (
       <Modal
@@ -29,34 +27,24 @@ class UserForm extends FormGeneric {
         <Form
           {...layout}
           onFinish={this.onFinish}
+          initialValues={this.store.object}
           onFieldsChange={(changedFields, allFields) =>
-            (this.store.object = fieldsToObject(allFields))
+            this.store.updateObject(fieldsToObject(allFields))
           }
           validateMessages={validateMessages}
           layout='vertical'
         >
-          <Form.Item
-            initialValue={this.props.object.nome}
-            name={['nome']}
-            label='Nome'
-            rules={[{ required: true }]}
-          >
+          <Form.Item name='nome' label='Nome' rules={[{ required: true }]}>
             <Input placeholder='Digite o nome' />
           </Form.Item>
           <Form.Item
-            initialValue={this.props.object.sobrenome}
-            name={['sobrenome']}
+            name='sobrenome'
             label='Sobrenome'
             rules={[{ required: true }]}
           >
             <Input placeholder='Digite o sobrenome' />
           </Form.Item>
-          <Form.Item
-            initialValue={this.props.object.email}
-            name={['email']}
-            label='Email'
-            rules={[{ type: 'email' }]}
-          >
+          <Form.Item name='email' label='Email' rules={[{ type: 'email' }]}>
             <Input placeholder='Digite o email' />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>

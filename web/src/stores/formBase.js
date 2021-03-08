@@ -4,7 +4,7 @@ import { message } from 'antd';
 class FormBase {
   @observable service;
   @observable loading;
-  @observable object;
+  @observable object = {};
 
   constructor(service) {
     this.service = service;
@@ -15,11 +15,13 @@ class FormBase {
 
   @action
   save(actionType, callback) {
+    debugger;
     this.loading = true;
     this.service
       .save(toJS(this.object), actionType)
       .then((response) => {
         runInAction(`User saved`, () => {
+          debugger;
           this.loading = false;
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
@@ -40,7 +42,7 @@ class FormBase {
     debugger;
     if (object) {
       this.object = object;
-    } else this.object = { nome: '', sobrenome: '', email: '' };
+    }
   }
 
   @action

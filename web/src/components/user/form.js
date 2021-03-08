@@ -16,8 +16,6 @@ class UserForm extends FormGeneric {
   render() {
     if (this.store.loading) return <Spin />;
     const { isModalVisible, changeModalVisible, actionType } = this.props;
-    debugger;
-    const cu = objectToFields(this.store.object);
 
     if (this.store.loading) return <Spin />;
 

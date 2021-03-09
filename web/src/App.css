@@ -105,6 +105,10 @@ input[type='number'] {
   width: 50%;
 }
 
-.btn-action-delete {
-  margin-left: -60px;
+.btn-action {
+  margin-left: 5px;
+}
+
+.actions {
+  text-align: end;
 }

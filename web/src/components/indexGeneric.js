@@ -48,7 +48,7 @@ class IndexGeneric extends React.Component {
     return (
       <Tooltip title='Excluir'>
         <Button
-          className='btn-action-delete'
+          className='btn-action'
           icon={<DeleteOutlined />}
           onClick={() => this.showConfirm(row)}
           type='danger'

@@ -38,12 +38,14 @@ class UserIndex extends IndexGeneric {
         key: 'email',
       },
       {
-        key: 'action-edit',
-        render: (row) => this.getDefaultEdit(row),
-      },
-      {
-        key: 'action-delete',
-        render: (row) => this.getDefaultDelete(row),
+        render: (row) => {
+          return (
+            <div className='actions'>
+              {this.getDefaultEdit(row)}
+              {this.getDefaultDelete(row)}
+            </div>
+          );
+        },
       },
     ];
     if (this.store.loading) return <Spin />;

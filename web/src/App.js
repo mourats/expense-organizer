@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from './components/Header';
-import UserForm from './components/user/index';
+import UserIndex from './components/user/index';
+import PaymentTypeIndex from './components/paymentType/index';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 import './App.css';
@@ -24,8 +25,11 @@ class App extends React.Component {
             <TabPane tab='Welcome' key='welcome'>
               <>Hello World</>
             </TabPane>
-            <TabPane tab='User' key='user'>
-              <UserForm />
+            <TabPane tab='Usuário' key='user'>
+              <UserIndex />
+            </TabPane>
+            <TabPane tab='Tipo de Pagamento' key='paymentType'>
+              <PaymentTypeIndex />
             </TabPane>
           </Tabs>
         </div>

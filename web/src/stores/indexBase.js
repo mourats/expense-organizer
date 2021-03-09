@@ -7,6 +7,7 @@ class IndexBase {
   @observable object;
   @observable lista = [];
   @observable isModalVisible = false;
+  @observable actionType;
 
   constructor(service) {
     this.service = service;
@@ -14,7 +15,7 @@ class IndexBase {
     this.delete = this.delete.bind(this);
     this.save = this.save.bind(this);
     this.updateObject = this.updateObject.bind(this);
-    this.changeModalVisible = this.changeModalVisible.bind(this);
+    this.disableModalAndActionType = this.disableModalAndActionType.bind(this);
     this.afterSave = this.afterSave.bind(this);
   }
 
@@ -34,14 +35,14 @@ class IndexBase {
     this.service
       .getAll()
       .then((response) => {
-        runInAction('Load User', () => {
+        runInAction('Load Object', () => {
           console.log(response);
           this.lista.replace(response.data);
           this.loading = false;
         });
       })
       .catch((error) => {
-        runInAction('Load User Error', () => {
+        runInAction('Load Object Error', () => {
           message.error(error.response.data);
           this.loading = false;
           console.log(error);
@@ -63,34 +64,26 @@ class IndexBase {
   }
 
   @action
-  save(actionType, callback) {
-    debugger;
+  save() {
     this.loading = true;
     this.service
-      .save(toJS(this.object), actionType)
+      .save(toJS(this.object), this.actionType)
       .then((response) => {
-        runInAction(`User saved`, () => {
-          debugger;
+        runInAction(`Object saved`, () => {
           this.loading = false;
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
-            callback ? callback() : null;
             this.afterSave();
           }
         });
       })
       .catch((error) => {
-        runInAction(`User saved error`, () => {
+        runInAction(`Object saved error`, () => {
           debugger;
           this.loading = false;
           message.error(error.response.data);
         });
       });
-  }
-
-  @action
-  changeModalVisible() {
-    this.isModalVisible = !this.isModalVisible;
   }
 
   @action
@@ -102,6 +95,13 @@ class IndexBase {
   afterSave() {
     this.object = undefined;
     this.load();
+    this.disableModalAndActionType();
+  }
+
+  @action
+  disableModalAndActionType() {
+    this.isModalVisible = !this.isModalVisible;
+    this.actionType = undefined;
   }
 }
 export default IndexBase;

@@ -2,21 +2,21 @@ import React from 'react';
 import { Table, Spin, Button, Divider, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
-import UserIndexStore from '../../stores/user/index';
+import PaymentTypeIndexStore from '../../stores/paymentType/index';
 import IndexGeneric from '../indexGeneric';
-import UserForm from './form';
+import PaymentTypeForm from './form';
 
 @observer
-class UserIndex extends IndexGeneric {
+class PaymentTypeIndex extends IndexGeneric {
   constructor(props) {
     super(props);
-    this.store = new UserIndexStore();
+    this.store = new PaymentTypeIndexStore();
     this.formModalContent = this.formModalContent.bind(this);
   }
 
   formModalContent() {
     if (this.store.isModalVisible) {
-      return <UserForm store={this.store} />;
+      return <PaymentTypeForm store={this.store} />;
     }
   }
 
@@ -28,14 +28,9 @@ class UserIndex extends IndexGeneric {
         key: 'nome',
       },
       {
-        title: 'Sobrenome',
-        dataIndex: 'sobrenome',
-        key: 'sobrenome',
-      },
-      {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
+        title: 'Dia do Vencimento',
+        dataIndex: 'diaVencimentoPadrao',
+        key: 'diaVencimentoPadrao',
       },
       {
         key: 'action-edit',
@@ -73,6 +68,6 @@ class UserIndex extends IndexGeneric {
   }
 }
 
-UserIndex.displayName = 'UserIndex';
+PaymentTypeIndex.displayName = 'PaymentTypeIndex';
 
-export default UserIndex;
+export default PaymentTypeIndex;

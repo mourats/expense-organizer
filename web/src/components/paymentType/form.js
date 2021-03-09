@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Form, Input, Modal } from 'antd';
+import { Button, Form, Input, InputNumber, Modal } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
 @observer
-class UserForm extends React.Component {
+class PaymentTypeForm extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -35,14 +35,11 @@ class UserForm extends React.Component {
             <Input placeholder='Digite o nome' />
           </Form.Item>
           <Form.Item
-            name='sobrenome'
-            label='Sobrenome'
-            rules={[{ required: true }]}
+            name='diaVencimentoPadrao'
+            label='Dia Vencimento'
+            rules={[{ required: true, type: 'number', min: 1, max: 31 }]}
           >
-            <Input placeholder='Digite o sobrenome' />
-          </Form.Item>
-          <Form.Item name='email' label='Email' rules={[{ type: 'email' }]}>
-            <Input placeholder='Digite o email' />
+            <InputNumber placeholder='Digite o dia de vencimento' />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>
             <Button className='btn' type='primary' htmlType='submit'>
@@ -55,6 +52,6 @@ class UserForm extends React.Component {
   }
 }
 
-UserForm.displayName = 'UserForm';
+PaymentTypeForm.displayName = 'PaymentTypeForm';
 
-export default UserForm;
+export default PaymentTypeForm;

@@ -20,6 +20,7 @@ class IndexGeneric extends React.Component {
   showForm(row) {
     this.store.object = row;
     this.store.isModalVisible = true;
+    this.store.actionType = row ? 'edit' : 'new';
   }
 
   showConfirm(row) {

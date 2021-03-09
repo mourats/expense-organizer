@@ -21,7 +21,6 @@ class ServiceBase {
   }
 
   save(object, actionType) {
-    debugger;
     if (actionType !== 'new') {
       return this.update(object);
     }

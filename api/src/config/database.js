@@ -3,12 +3,12 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 
 module.exports = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
+  process.env.DB_NAME || 'EXPENSE_ORGANIZER_DB',
+  process.env.DB_USER || 'root',
+  process.env.DB_PASS || 'ultrasecretpassword',
 
   {
-    host: process.env.DB_HOST,
-    dialect: process.env.SEQUELIZE_DIALECT,
+    host: process.env.DB_HOST || 'localhost',
+    dialect: process.env.SEQUELIZE_DIALECT || 'mysql',
   }
 );

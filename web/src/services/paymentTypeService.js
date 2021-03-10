@@ -3,7 +3,7 @@ import ServiceBase from './serviceBase';
 
 class PaymentTypeService extends ServiceBase {
   constructor() {
-    super(ends.tipoPagamentos);
+    super(ends.tipoPagamento);
   }
 }
 

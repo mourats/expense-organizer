@@ -1,7 +1,7 @@
 export default {
   baseAPIUrl: 'http://localhost:7000',
-  usuarios: 'usuarios',
-  tipoPagamentos: 'tipo-pagamentos',
-  periodos: 'periodos',
-  despesas: 'despesas',
+  usuario: 'usuario',
+  tipoPagamento: 'tipo-pagamento',
+  renda: 'renda',
+  despesa: 'despesa',
 };

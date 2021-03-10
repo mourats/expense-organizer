@@ -1,12 +1,10 @@
 const connector = require('../config/database');
 const Sequelize = require('sequelize');
-const TipoPagamento = require('./tipoPagamento');
-const Periodo = require('./periodo');
 const Usuario = require('./usuario');
 
-class Despesas extends Sequelize.Model {}
+class Renda extends Sequelize.Model {}
 
-Despesas.init(
+Renda.init(
   {
     id: {
       type: Sequelize.INTEGER,
@@ -25,36 +23,22 @@ Despesas.init(
       type: Sequelize.DECIMAL(15, 2),
       allowNull: false,
     },
-    parcelas: {
-      type: Sequelize.TINYINT,
+    periodo: {
+      type: Sequelize.DATEONLY,
       allowNull: false,
     },
   },
   {
     sequelize: connector,
-    modelName: 'despesas',
+    modelName: 'renda',
   }
 );
 
-TipoPagamento.hasMany(Despesas, {
+Usuario.hasMany(Renda, {
   foreignKey: {
     allowNull: false,
   },
 });
-Despesas.belongsTo(TipoPagamento);
+Renda.belongsTo(Usuario);
 
-Periodo.hasMany(Despesas, {
-  foreignKey: {
-    allowNull: false,
-  },
-});
-Despesas.belongsTo(Periodo);
-
-Usuario.hasMany(Despesas, {
-  foreignKey: {
-    allowNull: false,
-  },
-});
-Despesas.belongsTo(Usuario);
-
-module.exports = Despesas;
+module.exports = Renda;

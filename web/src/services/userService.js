@@ -3,7 +3,7 @@ import ServiceBase from './serviceBase';
 
 class UserService extends ServiceBase {
   constructor() {
-    super(ends.usuarios);
+    super(ends.usuario);
   }
 }
 

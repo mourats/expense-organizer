@@ -64,15 +64,11 @@ class IndexBase {
 
   @action
   save() {
-    debugger;
-
     this.loading = true;
     this.service
       .save(toJS(this.object), this.actionType)
       .then((response) => {
         runInAction(`Object saved`, () => {
-          debugger;
-
           this.loading = false;
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
@@ -82,7 +78,6 @@ class IndexBase {
       })
       .catch((error) => {
         runInAction(`Object saved error`, () => {
-          debugger;
           this.loading = false;
           message.error(error.response.data);
         });

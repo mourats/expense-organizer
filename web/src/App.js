@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import UserIndex from './components/user/index';
 import PaymentTypeIndex from './components/paymentType/index';
 import DespesaIndex from './components/expense/index';
+import RendaIndex from './components/income/index';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 import './App.css';
@@ -34,6 +35,9 @@ class App extends React.Component {
             </TabPane>
             <TabPane tab='Despesa' key='despesa'>
               <DespesaIndex />
+            </TabPane>
+            <TabPane tab='Renda' key='renda'>
+              <RendaIndex />
             </TabPane>
           </Tabs>
         </div>

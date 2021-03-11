@@ -50,6 +50,18 @@ class ExpenseIndex extends IndexGeneric {
         render: (value) => `R$ ${value}`.replace(/,([^,]*)$/, '.$1'),
       },
       {
+        title: 'Usuário',
+        dataIndex: 'usuario',
+        key: 'usuario',
+        render: (usuario) => `${usuario.nome}`,
+      },
+      {
+        title: 'Tipo Pagamento',
+        dataIndex: 'tipoPagamento',
+        key: 'tipoPagamento',
+        render: (pagament) => `${pagament.nome}`,
+      },
+      {
         title: 'Parcelas',
         dataIndex: 'parcelas',
         key: 'parcelas',

@@ -53,6 +53,7 @@ class ExpenseForm extends React.Component {
           </Form.Item>
           <Form.Item name='valor' label='Valor' rules={[{ required: true }]}>
             <InputNumber
+              placeholder='Digite o valor'
               style={{ width: '100%' }}
               parser={(value) => value.replace(/,([^,]*)$/, '.$1')}
             />

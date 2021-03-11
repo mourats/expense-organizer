@@ -1,12 +1,18 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber, Modal } from 'antd';
+import { Button, Form, Input, Modal, InputNumber } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
 @observer
-class PaymentTypeForm extends React.Component {
+class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(value) {
+    debugger;
+    console.log('changed', value);
   }
 
   render() {
@@ -35,11 +41,30 @@ class PaymentTypeForm extends React.Component {
             <Input placeholder='Digite o nome' />
           </Form.Item>
           <Form.Item
-            name='diaVencimentoPadrao'
-            label='Dia Vencimento'
-            rules={[{ required: true, type: 'number', min: 1, max: 31 }]}
+            name='descricao'
+            label='Descrição'
+            rules={[{ required: true }]}
           >
-            <InputNumber placeholder='Digite o dia de vencimento' />
+            <Input placeholder='Digite o descrição' />
+          </Form.Item>
+          <Form.Item name='valor' label='Valor' rules={[{ required: true }]}>
+            <InputNumber
+              style={{ width: '100%' }}
+              formatter={(value) =>
+                `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+              }
+              parser={(value) => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, '')}
+            />
+          </Form.Item>
+          <Form.Item
+            name='parcelas'
+            label='Parcelas'
+            rules={[{ required: true, type: 'number', min: 1, max: 12 }]}
+          >
+            <InputNumber
+              style={{ width: '30%' }}
+              placeholder='Digite as parcelas'
+            />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>
             <Button className='btn' type='primary' htmlType='submit'>
@@ -52,6 +77,6 @@ class PaymentTypeForm extends React.Component {
   }
 }
 
-PaymentTypeForm.displayName = 'PaymentTypeForm';
+ExpenseForm.displayName = 'ExpenseForm';
 
-export default PaymentTypeForm;
+export default ExpenseForm;

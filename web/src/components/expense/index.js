@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import ExpenseIndexStore from '../../stores/expense/index';
 import IndexGeneric from '../indexGeneric';
 import ExpenseForm from './form';
+import { moneyFormatter } from '../../util/util';
 import moment from 'moment';
 
 @observer
@@ -47,7 +48,7 @@ class ExpenseIndex extends IndexGeneric {
         title: 'Valor',
         dataIndex: 'valor',
         key: 'valor',
-        render: (value) => `R$ ${value}`.replace(/,([^,]*)$/, '.$1'),
+        render: (value) => moneyFormatter(+value),
       },
       {
         title: 'Usuário',

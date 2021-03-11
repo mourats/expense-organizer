@@ -4,6 +4,7 @@ import UserIndex from './components/user/index';
 import PaymentTypeIndex from './components/paymentType/index';
 import DespesaIndex from './components/expense/index';
 import RendaIndex from './components/income/index';
+import WelcomeIndex from './components/welcome/index';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 import './App.css';
@@ -25,7 +26,7 @@ class App extends React.Component {
             onChange={(key) => this.setState({ abaAtiva: key })}
           >
             <TabPane tab='Welcome' key='welcome'>
-              <>Hello World</>
+              <WelcomeIndex />
             </TabPane>
             <TabPane tab='Usuário' key='user'>
               <UserIndex />

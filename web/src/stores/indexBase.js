@@ -38,6 +38,7 @@ class IndexBase {
         runInAction('Load Object', () => {
           this.lista.replace(response.data);
           this.loading = false;
+          this.treatData && this.treatData();
           callback && callback();
         });
       })

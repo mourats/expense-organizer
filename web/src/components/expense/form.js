@@ -1,23 +1,27 @@
 import React from 'react';
-import { Button, Form, Input, Modal, InputNumber } from 'antd';
+import {
+  Button,
+  Form,
+  Input,
+  Modal,
+  InputNumber,
+  DatePicker,
+  Select,
+} from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
+const { Option } = Select;
+import 'moment/locale/pt-br';
+import locale from 'antd/es/date-picker/locale/pt_BR';
 @observer
 class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(value) {
-    debugger;
-    console.log('changed', value);
   }
 
   render() {
     const { store } = this.props;
-
     return (
       <Modal
         title={
@@ -50,11 +54,50 @@ class ExpenseForm extends React.Component {
           <Form.Item name='valor' label='Valor' rules={[{ required: true }]}>
             <InputNumber
               style={{ width: '100%' }}
-              formatter={(value) =>
-                `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-              }
-              parser={(value) => value.replace(/[A-Z]|[a-z]|[$ ]|\.+/g, '')}
+              parser={(value) => value.replace(/,([^,]*)$/, '.$1')}
             />
+          </Form.Item>
+          <Form.Item
+            name='usuarioId'
+            label='Usuário'
+            rules={[{ required: true }]}
+          >
+            <Select
+              showSearch
+              style={{ width: '100%' }}
+              placeholder='Selecione um usuário'
+              optionFilterProp='children'
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {store.userList.map((user) => (
+                <Option key={user.id} value={user.id}>
+                  {`${user.nome} ${user.sobrenome}`}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name='tipoPagamentoId'
+            label='Tipo de Pagamento'
+            rules={[{ required: true }]}
+          >
+            <Select
+              showSearch
+              style={{ width: '100%' }}
+              placeholder='Selecione um tipo de pagamento'
+              optionFilterProp='children'
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {store.typePagamentList.map((pag) => (
+                <Option key={pag.id} value={pag.id}>
+                  {`${pag.nome}`}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item
             name='parcelas'
@@ -64,6 +107,19 @@ class ExpenseForm extends React.Component {
             <InputNumber
               style={{ width: '30%' }}
               placeholder='Digite as parcelas'
+            />
+          </Form.Item>
+          <Form.Item
+            name='periodo'
+            label='Período'
+            rules={[{ required: true }]}
+          >
+            <DatePicker
+              picker='month'
+              placeholder='Selecione o mês'
+              style={{ width: '30%' }}
+              locale={locale}
+              format={'MM/YYYY'}
             />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>

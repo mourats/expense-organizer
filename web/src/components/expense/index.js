@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import ExpenseIndexStore from '../../stores/expense/index';
 import IndexGeneric from '../indexGeneric';
 import ExpenseForm from './form';
+import moment from 'moment';
 
 @observer
 class ExpenseIndex extends IndexGeneric {
@@ -12,6 +13,12 @@ class ExpenseIndex extends IndexGeneric {
     super(props);
     this.store = new ExpenseIndexStore();
     this.formModalContent = this.formModalContent.bind(this);
+  }
+
+  componentDidMount() {
+    this.store.load(this.store.treatData);
+    this.store.getUsersSelect();
+    this.store.getTypePagamentListSelect();
   }
 
   formModalContent() {
@@ -40,6 +47,7 @@ class ExpenseIndex extends IndexGeneric {
         title: 'Valor',
         dataIndex: 'valor',
         key: 'valor',
+        render: (value) => `R$ ${value}`.replace(/,([^,]*)$/, '.$1'),
       },
       {
         title: 'Parcelas',
@@ -50,6 +58,7 @@ class ExpenseIndex extends IndexGeneric {
         title: 'Período',
         dataIndex: 'periodo',
         key: 'periodo',
+        render: (date) => moment(date).format('MM/YYYY'),
       },
       {
         render: (row) => {

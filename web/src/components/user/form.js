@@ -18,7 +18,7 @@ class UserForm extends React.Component {
           store.actionType === 'edit' ? 'Editar Registro' : 'Novo Registro'
         }
         visible={store.isModalVisible}
-        onCancel={store.disableModalAndactionType}
+        onCancel={store.disableModalAndActionType}
         footer={null}
       >
         <Form

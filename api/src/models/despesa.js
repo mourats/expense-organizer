@@ -29,7 +29,7 @@ Despesa.init(
       allowNull: false,
     },
     periodo: {
-      type: Sequelize.DATEONLY,
+      type: Sequelize.DATE,
       allowNull: false,
     },
   },

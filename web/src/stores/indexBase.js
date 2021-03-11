@@ -30,22 +30,21 @@ class IndexBase {
   }
 
   @action
-  load() {
+  load(callback) {
     this.loading = true;
     this.service
       .getAll()
       .then((response) => {
         runInAction('Load Object', () => {
-          console.log(response);
           this.lista.replace(response.data);
           this.loading = false;
+          callback && callback();
         });
       })
       .catch((error) => {
         runInAction('Load Object Error', () => {
           message.error(error.response.data);
           this.loading = false;
-          console.log(error);
         });
       });
   }
@@ -65,11 +64,15 @@ class IndexBase {
 
   @action
   save() {
+    debugger;
+
     this.loading = true;
     this.service
       .save(toJS(this.object), this.actionType)
       .then((response) => {
         runInAction(`Object saved`, () => {
+          debugger;
+
           this.loading = false;
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
@@ -94,7 +97,7 @@ class IndexBase {
   @action
   afterSave() {
     this.object = undefined;
-    this.load();
+    this.load(this.treatData);
     this.disableModalAndActionType();
   }
 

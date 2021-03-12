@@ -52,6 +52,15 @@ class WelcomeIndex extends React.Component {
             <p className='money plus'>{moneyFormatter(totalIncome)}</p>
           </div>
         </div>
+        <>
+          <h5>
+            *Balanço mensal não está considerando a soma dos meses anteriores.
+          </h5>
+          <h5>
+            **Despesas ainda não está fazendo o parcelamento do valor informado
+            nos meses seguintes.
+          </h5>
+        </>
       </TabPane>
     );
   }

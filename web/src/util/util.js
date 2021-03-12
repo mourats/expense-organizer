@@ -13,7 +13,6 @@ export const fieldsToObject = (fields) => {
 };
 
 export const groupByMonth = (list, prop) => {
-  debugger;
   let groups = {};
 
   list.forEach((item) => {
@@ -25,16 +24,16 @@ export const groupByMonth = (list, prop) => {
 };
 
 export const moneyFormatter = (num) => {
-  let p = num.toFixed(2).split('.');
-  return (
-    'R$ ' +
+  const p = num.toFixed(2).split('.');
+  const negative = p[0].includes('-');
+  const format =
     p[0]
       .split('')
       .reverse()
-      .reduce(function (acc, num, i, orig) {
+      .reduce(function (acc, num, i) {
         return num === '-' ? acc : num + (i && !(i % 3) ? '.' : '') + acc;
       }, '') +
     ',' +
-    p[1]
-  );
+    p[1];
+  return 'R$ ' + (negative ? '-' + format : format);
 };

@@ -36,9 +36,12 @@ class WelcomeIndex extends React.Component {
       );
     }
 
-    debugger;
     return (
       <TabPane tab={key} key={key}>
+        <>
+          <h4>Balanço Mensal</h4>
+          <h1>{moneyFormatter(totalIncome - totalExpense)}</h1>
+        </>
         <div className='inc-exp-container'>
           <div>
             <h4>Despesa</h4>
@@ -54,7 +57,6 @@ class WelcomeIndex extends React.Component {
   }
 
   render() {
-    debugger;
     if (this.store.loading) return <Spin />;
 
     const keysExpenses = Object.keys(this.store.expensesGroup);

@@ -23,7 +23,10 @@ class App extends React.Component {
         <div className='container'>
           <Tabs
             activeKey={this.state.state}
-            onChange={(key) => this.setState({ abaAtiva: key })}
+            onChange={(key) => {
+              debugger;
+              this.setState({ abaAtiva: key });
+            }}
           >
             <TabPane tab='Welcome' key='welcome'>
               <WelcomeIndex />

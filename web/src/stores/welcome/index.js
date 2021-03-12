@@ -29,7 +29,6 @@ class WelcomeIndexStore {
         });
       })
       .catch((error) => {
-        debugger;
         runInAction('Load Expenses and Incomes', () => {
           message.error(error);
           this.loading = false;
@@ -39,7 +38,6 @@ class WelcomeIndexStore {
 
   @action
   treatData() {
-    debugger;
     if (this.expenses.length > 0) {
       this.expenses.forEach((elem) => {
         if (elem.periodo) elem.periodo = moment(elem.periodo);

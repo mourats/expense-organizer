@@ -56,7 +56,8 @@ class IndexBase {
       .delete(row.id)
       .then(() => {
         message.success('Registro excluído com sucesso');
-        this.load();
+        // this.load();
+        window.location.reload();
       })
       .catch((error) => {
         message.error(error.response.data);
@@ -70,10 +71,11 @@ class IndexBase {
       .save(toJS(this.object), this.actionType)
       .then((response) => {
         runInAction(`Object saved`, () => {
-          this.loading = false;
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
-            this.afterSave();
+            // this.loading = false;
+            // this.afterSave();
+            window.location.reload();
           }
         });
       })

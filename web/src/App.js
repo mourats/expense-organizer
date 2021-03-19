@@ -7,6 +7,7 @@ import RendaIndex from './components/income/index';
 import WelcomeIndex from './components/welcome/index';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
+import moment from 'moment';
 import './App.css';
 
 class App extends React.Component {
@@ -23,25 +24,22 @@ class App extends React.Component {
         <div className='container'>
           <Tabs
             activeKey={this.state.state}
-            onChange={(key) => {
-              debugger;
-              this.setState({ abaAtiva: key });
-            }}
+            onChange={(key) => this.setState({ abaAtiva: key })}
           >
             <TabPane tab='Welcome' key='welcome'>
-              <WelcomeIndex />
+              <WelcomeIndex key={moment().toISOString()} />
             </TabPane>
             <TabPane tab='Usuário' key='user'>
-              <UserIndex />
+              <UserIndex key={moment().toISOString()} />
             </TabPane>
             <TabPane tab='Tipo de Pagamento' key='paymentType'>
-              <PaymentTypeIndex />
+              <PaymentTypeIndex key={moment().toISOString()} />
             </TabPane>
             <TabPane tab='Despesa' key='despesa'>
-              <DespesaIndex />
+              <DespesaIndex key={moment().toISOString()} />
             </TabPane>
             <TabPane tab='Renda' key='renda'>
-              <RendaIndex />
+              <RendaIndex key={moment().toISOString()} />
             </TabPane>
           </Tabs>
         </div>

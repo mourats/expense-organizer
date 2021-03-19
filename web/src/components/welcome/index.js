@@ -57,8 +57,8 @@ class WelcomeIndex extends React.Component {
             *Balanço mensal não está considerando a soma dos meses anteriores.
           </h5>
           <h5>
-            **Despesas ainda não está fazendo o parcelamento do valor informado
-            nos meses seguintes.
+            **Despesa não está fazendo o parcelamento do valor informado nos
+            meses seguintes.
           </h5>
         </>
       </TabPane>

@@ -28,7 +28,7 @@ TipoPagamento.init(
   },
   {
     sequelize: connector,
-    modelName: 'tipoPagamentos',
+    modelName: 'tipoPagamento',
   }
 );
 

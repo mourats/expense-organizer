@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  database:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_DATABASE=EXPENSE_ORGANIZER_DB
+      - MYSQL_ROOT_PASSWORD=ultrasecretpassword
+    ports: 
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - database

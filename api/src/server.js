@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const connector = require('./config/database');
 
@@ -10,6 +11,9 @@ connector
   .catch((err) => console.error('Error synchronizing models and tables:', err));
 
 const app = express();
+
+// enabling CORS
+app.use(cors());
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -23,9 +27,9 @@ app.get('/', (req, res) => {
 });
 
 require('./routes/usuarioRoute.js')(app);
-require('./routes/periodoRoute.js')(app);
+require('./routes/rendaRoute.js')(app);
 require('./routes/tipoPagamentoRoute.js')(app);
-require('./routes/despesasRoute.js')(app);
+require('./routes/despesaRoute.js')(app);
 
 // set port, listen for requests
 app.listen(7000, () => {

@@ -25,7 +25,7 @@ Usuario.init(
   },
   {
     sequelize: connector,
-    modelName: 'usuarios',
+    modelName: 'usuario',
   }
 );
 

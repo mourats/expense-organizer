@@ -23,8 +23,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "PUBLIC_URL=expense-organizer react-app-rewired start",
+    "build": "PUBLIC_URL=expense-organizer react-app-rewired build",
     "test": "react-app-rewired test"
   },
   "browserslist": {

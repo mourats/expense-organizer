@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
 describe('My First Test', () => {
   it('Visits index page', () => {
-    cy.visit('http://localhost:3000/expense-organizer');
+    cy.visit('/').then((window) => {
+      console.log(window.document.activeElement.innerHTML);
+    });
+    cy.get('div[id="rc-tabs-1-tab-despesa"]', { timeout: 10000 }).click();
   });
 });
 

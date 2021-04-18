@@ -24,8 +24,7 @@
   },
   "scripts": {
     "start": "PUBLIC_URL=expense-organizer react-app-rewired start",
-    "build": "PUBLIC_URL=expense-organizer react-app-rewired build",
-    "test": "cypress open"
+    "build": "PUBLIC_URL=expense-organizer react-app-rewired build"
   },
   "browserslist": {
     "production": [
@@ -41,7 +40,6 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/plugin-proposal-decorators": "^7.13.5",
-    "cypress": "^6.8.0"
+    "@babel/plugin-proposal-decorators": "^7.13.5"
   }
 }

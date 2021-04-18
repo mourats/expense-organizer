@@ -1,12 +1,12 @@
-# Expense Organizer (React)
+# Expense Organizer Web (React)
 
 ## Usage
 ```
-npm install
+yarn
 
-# Run on http://localhost:3000
-npm start
+# Run on http://localhost:3000/expense-organizer
+yarn start
 
 # Build for prod
-npm run build
+yarn build
 ```

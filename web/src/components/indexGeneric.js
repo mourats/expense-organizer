@@ -39,7 +39,11 @@ class IndexGeneric extends React.Component {
   getDefaultEdit(row) {
     return (
       <Tooltip title='Editar'>
-        <Button icon={<EditOutlined />} onClick={() => this.showForm(row)} />
+        <Button
+          data-cy='edit-button'
+          icon={<EditOutlined />}
+          onClick={() => this.showForm(row)}
+        />
       </Tooltip>
     );
   }
@@ -48,6 +52,7 @@ class IndexGeneric extends React.Component {
     return (
       <Tooltip title='Excluir'>
         <Button
+          data-cy='delete-button'
           className='btn-action'
           icon={<DeleteOutlined />}
           onClick={() => this.showConfirm(row)}

@@ -54,13 +54,13 @@ class ExpenseIndex extends IndexGeneric {
         title: 'Usuário',
         dataIndex: 'usuario',
         key: 'usuario',
-        render: (usuario) => `${usuario.nome}`,
+        render: (usuario) => `${(usuario && usuario.nome) || '-'}`,
       },
       {
         title: 'Tipo Pagamento',
         dataIndex: 'tipoPagamento',
         key: 'tipoPagamento',
-        render: (pagament) => `${pagament.nome}`,
+        render: (pagament) => `${(pagament && pagament.nome) || '-'}`,
       },
       {
         title: 'Parcelas',

@@ -53,7 +53,7 @@ class IncomeIndex extends IndexGeneric {
         title: 'Usuário',
         dataIndex: 'usuario',
         key: 'usuario',
-        render: (usuario) => `${usuario.nome}`,
+        render: (usuario) => `${(usuario && usuario.nome) || '-'}`,
       },
       {
         title: 'Período',

@@ -41,14 +41,14 @@ Despesa.init(
 
 TipoPagamento.hasMany(Despesa, {
   foreignKey: {
-    allowNull: false,
+    allowNull: true,
   },
 });
 Despesa.belongsTo(TipoPagamento);
 
 Usuario.hasMany(Despesa, {
   foreignKey: {
-    allowNull: false,
+    allowNull: true,
   },
 });
 Despesa.belongsTo(Usuario);

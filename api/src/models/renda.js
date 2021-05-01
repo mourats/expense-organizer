@@ -36,7 +36,7 @@ Renda.init(
 
 Usuario.hasMany(Renda, {
   foreignKey: {
-    allowNull: false,
+    allowNull: true,
   },
 });
 Renda.belongsTo(Usuario);

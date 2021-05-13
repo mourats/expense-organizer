@@ -93,7 +93,12 @@ class IncomeForm extends React.Component {
             />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>
-            <Button className='btn' type='primary' htmlType='submit'>
+            <Button
+              data-cy='submit-button'
+              className='btn'
+              type='primary'
+              htmlType='submit'
+            >
               Salvar
             </Button>
           </Form.Item>

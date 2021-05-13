@@ -91,6 +91,7 @@ class ExpenseIndex extends IndexGeneric {
         <Row>
           <Col offset={21}>
             <Button
+              data-cy='new-button'
               type='primary'
               icon={<PlusOutlined />}
               onClick={() => this.showForm()}

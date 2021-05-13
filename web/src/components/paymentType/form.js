@@ -42,7 +42,12 @@ class PaymentTypeForm extends React.Component {
             <InputNumber placeholder='Digite o dia de vencimento' />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8 }}>
-            <Button className='btn' type='primary' htmlType='submit'>
+            <Button
+              data-cy='submit-button'
+              className='btn'
+              type='primary'
+              htmlType='submit'
+            >
               Salvar
             </Button>
           </Form.Item>

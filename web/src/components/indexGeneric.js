@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Tooltip, Modal } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 
 @observer
 class IndexGeneric extends React.Component {
@@ -36,29 +37,25 @@ class IndexGeneric extends React.Component {
     });
   }
 
-  getDefaultEdit(row) {
+  getDefaultEdit(urlEdit) {
     return (
-      <Tooltip title='Editar'>
-        <Button
-          data-cy='edit-button'
-          icon={<EditOutlined />}
-          onClick={() => this.showForm(row)}
-        />
-      </Tooltip>
+      <Link to={urlEdit}>
+        <Tooltip title='Editar'>
+          <Button data-cy='edit-button' icon={<EditOutlined />} />
+        </Tooltip>
+      </Link>
     );
   }
 
   getDefaultDelete(row) {
     return (
-      <Tooltip title='Excluir'>
-        <Button
-          data-cy='delete-button'
-          className='btn-action'
-          icon={<DeleteOutlined />}
-          onClick={() => this.showConfirm(row)}
-          type='danger'
-        />
-      </Tooltip>
+      <Button
+        data-cy='delete-button'
+        className='btn-action'
+        icon={<DeleteOutlined />}
+        onClick={() => this.showConfirm(row)}
+        type='danger'
+      />
     );
   }
 }

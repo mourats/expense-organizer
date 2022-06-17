@@ -1,0 +1,20 @@
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  font-size: 18px;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}

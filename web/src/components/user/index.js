@@ -4,20 +4,13 @@ import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import UserIndexStore from '../../stores/user/index';
 import IndexGeneric from '../indexGeneric';
-import UserForm from './form';
+import UrlRouter from '../../constants/UrlRouter';
 
 @observer
 class UserIndex extends IndexGeneric {
   constructor(props) {
     super(props);
     this.store = new UserIndexStore();
-    this.formModalContent = this.formModalContent.bind(this);
-  }
-
-  formModalContent() {
-    if (this.store.isModalVisible) {
-      return <UserForm store={this.store} />;
-    }
   }
 
   render() {
@@ -41,7 +34,9 @@ class UserIndex extends IndexGeneric {
         render: (row) => {
           return (
             <div className='actions'>
-              {this.getDefaultEdit(row)}
+              {this.getDefaultEdit(
+                UrlRouter.usuario.edit.replace(':id', row.id)
+              )}
               {this.getDefaultDelete(row)}
             </div>
           );
@@ -70,7 +65,6 @@ class UserIndex extends IndexGeneric {
           dataSource={this.store.listaComKey}
           loading={this.store.loading}
         />
-        {this.formModalContent()}
       </div>
     );
   }

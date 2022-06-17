@@ -1,14 +1,14 @@
 import React from 'react';
 import { Header } from './components/Header';
-import UserIndex from './components/user/index';
-import PaymentTypeIndex from './components/paymentType/index';
-import DespesaIndex from './components/expense/index';
-import RendaIndex from './components/income/index';
 import WelcomeIndex from './components/welcome/index';
-import { Tabs } from 'antd';
-const { TabPane } = Tabs;
-import moment from 'moment';
+import RotasUsuario from './routes/RotasUsuario';
+import NavBar from './NavBar';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Switch } from 'react-router';
+import { Route } from 'react-router-dom';
+import UrlRouter from './constants/UrlRouter';
+import history from './history';
 
 class App extends React.Component {
   constructor() {
@@ -19,31 +19,23 @@ class App extends React.Component {
   }
   render() {
     return (
-      <>
-        <Header />
-        <div className='container'>
-          <Tabs
-            activeKey={this.state.state}
-            onChange={(key) => this.setState({ abaAtiva: key })}
-          >
-            <TabPane tab='Welcome' key='welcome'>
-              <WelcomeIndex key={moment().toISOString()} />
-            </TabPane>
-            <TabPane tab='Usuário' key='user'>
-              <UserIndex key={moment().toISOString()} />
-            </TabPane>
-            <TabPane tab='Tipo de Pagamento' key='paymentType'>
-              <PaymentTypeIndex key={moment().toISOString()} />
-            </TabPane>
-            <TabPane tab='Despesa' key='despesa'>
-              <DespesaIndex key={moment().toISOString()} />
-            </TabPane>
-            <TabPane tab='Renda' key='renda'>
-              <RendaIndex key={moment().toISOString()} />
-            </TabPane>
-          </Tabs>
-        </div>
-      </>
+      <Router history={history}>
+        <>
+          <Header />
+          <div className='container'>
+            <NavBar />
+            <Route path={UrlRouter.home}>
+              <Switch>
+                <Route component={WelcomeIndex} exact path={UrlRouter.home} />
+                <Route
+                  component={RotasUsuario}
+                  path={UrlRouter.usuario.index}
+                />
+              </Switch>
+            </Route>
+          </div>
+        </>
+      </Router>
     );
   }
 }

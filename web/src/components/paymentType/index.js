@@ -1,23 +1,17 @@
 import React from 'react';
-import { Table, Spin, Button, Divider, Row, Col } from 'antd';
+import { Table, Spin, Button, Divider, Row, Col, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import PaymentTypeIndexStore from '../../stores/paymentType/index';
 import IndexGeneric from '../indexGeneric';
-import PaymentTypeForm from './form';
+import UrlRouter from '../../constants/UrlRouter';
+import { Link } from 'react-router-dom';
 
 @observer
 class PaymentTypeIndex extends IndexGeneric {
   constructor(props) {
     super(props);
     this.store = new PaymentTypeIndexStore();
-    this.formModalContent = this.formModalContent.bind(this);
-  }
-
-  formModalContent() {
-    if (this.store.isModalVisible) {
-      return <PaymentTypeForm store={this.store} />;
-    }
   }
 
   render() {
@@ -36,7 +30,7 @@ class PaymentTypeIndex extends IndexGeneric {
         render: (row) => {
           return (
             <div className='actions'>
-              {this.getDefaultEdit(row)}
+              {this.getDefaultEdit(UrlRouter.tipoPagamento.edit.replace(':id', row.id))}
               {this.getDefaultDelete(row)}
             </div>
           );
@@ -49,14 +43,14 @@ class PaymentTypeIndex extends IndexGeneric {
       <div className='scrollable'>
         <Row>
           <Col offset={21}>
-            <Button
-              data-cy='new-button'
-              type='primary'
-              icon={<PlusOutlined />}
-              onClick={() => this.showForm()}
-            >
-              Novo
-            </Button>
+            <Link to={UrlRouter.tipoPagamento.new}>
+              <Tooltip title='Novo'>
+                <Button icon={<PlusOutlined />} data-cy='new-button'
+                  type='primary' >
+                  Novo
+                </Button>
+              </Tooltip>
+            </Link>
           </Col>
         </Row>
         <Divider />
@@ -65,7 +59,6 @@ class PaymentTypeIndex extends IndexGeneric {
           dataSource={this.store.listaComKey}
           loading={this.store.loading}
         />
-        {this.formModalContent()}
       </div>
     );
   }

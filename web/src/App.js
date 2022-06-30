@@ -2,6 +2,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import WelcomeIndex from './components/welcome/index';
 import RotasUsuario from './routes/RotasUsuario';
+import RotasTipoPagamento from './routes/RotasTipoPagamento';
 import NavBar from './NavBar';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -9,6 +10,8 @@ import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import UrlRouter from './constants/UrlRouter';
 import history from './history';
+import RotasDespesa from './routes/RotasDespesa';
+import RotasRenda from './routes/RotasRenda';
 
 class App extends React.Component {
   constructor() {
@@ -30,6 +33,18 @@ class App extends React.Component {
                 <Route
                   component={RotasUsuario}
                   path={UrlRouter.usuario.index}
+                />
+                <Route
+                  component={RotasTipoPagamento}
+                  path={UrlRouter.tipoPagamento.index}
+                />
+                <Route
+                  component={RotasDespesa}
+                  path={UrlRouter.despesa.index}
+                />
+                <Route
+                  component={RotasRenda}
+                  path={UrlRouter.renda.index}
                 />
               </Switch>
             </Route>

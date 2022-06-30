@@ -1,31 +1,25 @@
 import React from 'react';
-import { Table, Spin, Button, Divider, Row, Col } from 'antd';
+import { Table, Spin, Button, Divider, Row, Col, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import ExpenseIndexStore from '../../stores/expense/index';
 import IndexGeneric from '../indexGeneric';
-import ExpenseForm from './form';
 import { moneyFormatter } from '../../util/util';
 import moment from 'moment';
+import UrlRouter from '../../constants/UrlRouter';
+import { Link } from 'react-router-dom';
 
 @observer
 class ExpenseIndex extends IndexGeneric {
   constructor(props) {
     super(props);
     this.store = new ExpenseIndexStore();
-    this.formModalContent = this.formModalContent.bind(this);
   }
 
   componentDidMount() {
     this.store.load(this.store.treatData);
     this.store.getUsersSelect();
     this.store.getTypePagamentListSelect();
-  }
-
-  formModalContent() {
-    if (this.store.isModalVisible) {
-      return <ExpenseForm store={this.store} />;
-    }
   }
 
   render() {
@@ -77,7 +71,7 @@ class ExpenseIndex extends IndexGeneric {
         render: (row) => {
           return (
             <div className='actions'>
-              {this.getDefaultEdit(row)}
+              {this.getDefaultEdit(UrlRouter.despesa.edit.replace(':id', row.id))}
               {this.getDefaultDelete(row)}
             </div>
           );
@@ -90,14 +84,14 @@ class ExpenseIndex extends IndexGeneric {
       <div className='scrollable'>
         <Row>
           <Col offset={21}>
-            <Button
-              data-cy='new-button'
-              type='primary'
-              icon={<PlusOutlined />}
-              onClick={() => this.showForm()}
-            >
-              Novo
-            </Button>
+            <Link to={UrlRouter.despesa.new}>
+              <Tooltip title='Novo'>
+                <Button icon={<PlusOutlined />} data-cy='new-button'
+                  type='primary' >
+                  Novo
+                </Button>
+              </Tooltip>
+            </Link>
           </Col>
         </Row>
         <Divider />
@@ -106,7 +100,6 @@ class ExpenseIndex extends IndexGeneric {
           dataSource={this.store.listaComKey}
           loading={this.store.loading}
         />
-        {this.formModalContent()}
       </div>
     );
   }

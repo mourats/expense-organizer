@@ -11,6 +11,7 @@ class IncomeIndexStore extends IndexBase {
     super(IncomeService);
     this.getUsersSelect = this.getUsersSelect.bind(this);
     this.treatData = this.treatData.bind(this);
+    this.treatObject = this.treatObject.bind(this);
   }
 
   @action
@@ -38,6 +39,13 @@ class IncomeIndexStore extends IndexBase {
       this.lista.forEach((elem) => {
         if (elem.periodo) elem.periodo = moment(elem.periodo);
       });
+  }
+
+  @action
+  treatObject() {
+    if (this.object && this.object.periodo) {
+      this.object.periodo = moment(this.object.periodo);
+    }
   }
 }
 export default IncomeIndexStore;

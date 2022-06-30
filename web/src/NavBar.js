@@ -14,9 +14,15 @@ class NavBar extends Component {
           <li>
             <Link to={UrlRouter.usuario.index}>Usuários</Link>
           </li>
-          {/* <li>
-            <Link to='pagamento'>Pagamentos</Link>
-          </li> */}
+          <li>
+            <Link to={UrlRouter.tipoPagamento.index}>Tipo de Pagamento</Link>
+          </li>
+          <li>
+            <Link to={UrlRouter.despesa.index}>Despesa</Link>
+          </li>
+          <li>
+            <Link to={UrlRouter.renda.index}>Renda</Link>
+          </li>
         </ul>
       </nav>
     );

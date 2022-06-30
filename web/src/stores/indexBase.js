@@ -6,7 +6,6 @@ class IndexBase {
   @observable loading;
   @observable object;
   @observable lista = [];
-  @observable isModalVisible = false;
   @observable actionType;
 
   constructor(service) {
@@ -15,8 +14,6 @@ class IndexBase {
     this.delete = this.delete.bind(this);
     this.save = this.save.bind(this);
     this.updateObject = this.updateObject.bind(this);
-    this.disableModalAndActionType = this.disableModalAndActionType.bind(this);
-    this.afterSave = this.afterSave.bind(this);
   }
 
   @computed
@@ -89,7 +86,7 @@ class IndexBase {
   }
 
   @action
-  save() {
+  save(callback) {
     this.loading = true;
     this.service
       .save(toJS(this.object), this.actionType)
@@ -98,7 +95,7 @@ class IndexBase {
           if (response.status === 200 || response.status === 201) {
             message.success('Registro salvo com sucesso');
             this.loading = false;
-            this.afterSave();
+            callback && callback();
           }
         });
       })
@@ -115,17 +112,5 @@ class IndexBase {
     this.object = Object.assign(this.object || {}, object);
   }
 
-  @action
-  afterSave() {
-    this.object = undefined;
-    this.load(this.treatData);
-    this.disableModalAndActionType();
-  }
-
-  @action
-  disableModalAndActionType() {
-    this.isModalVisible = !this.isModalVisible;
-    this.actionType = undefined;
-  }
 }
 export default IndexBase;

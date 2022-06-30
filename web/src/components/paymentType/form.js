@@ -1,32 +1,27 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber, Modal } from 'antd';
+import { Button, Form, Input, InputNumber, Spin, Row, Col } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
+import FormGeneric from '../formGeneric';
+import UrlRouter from '../../constants/UrlRouter';
+import PaymentTypeIndexStore from '../../stores/paymentType';
 @observer
-class PaymentTypeForm extends React.Component {
+class PaymentTypeForm extends FormGeneric {
   constructor(props) {
-    super(props);
+    super(props, UrlRouter.tipoPagamento.index);
+    this.store = new PaymentTypeIndexStore();
   }
 
   render() {
-    const { store } = this.props;
-
-    return (
-      <Modal
-        title={
-          store.actionType === 'edit' ? 'Editar Registro' : 'Novo Registro'
-        }
-        visible={store.isModalVisible}
-        onCancel={store.disableModalAndActionType}
-        footer={null}
-      >
+    if (this.store.object) {
+      return (
         <Form
           {...layout}
-          onFinish={() => store.save()}
-          initialValues={store.object}
+          onFinish={() => this.store.save(this._goBack)}
+          initialValues={this.store.object}
           onFieldsChange={(_, allFields) =>
-            store.updateObject(fieldsToObject(allFields))
+            this.store.updateObject(fieldsToObject(allFields))
           }
           validateMessages={validateMessages}
           layout='vertical'
@@ -39,21 +34,38 @@ class PaymentTypeForm extends React.Component {
             label='Dia Vencimento'
             rules={[{ required: true, type: 'number', min: 1, max: 31 }]}
           >
-            <InputNumber placeholder='Digite o dia de vencimento' />
+
+            <InputNumber
+              placeholder='Digite o dia de vencimento' />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8 }}>
-            <Button
-              data-cy='submit-button'
-              className='btn'
-              type='primary'
-              htmlType='submit'
-            >
-              Salvar
-            </Button>
+          <Form.Item>
+            <Row>
+              <Col offset={6} span={8}>
+                <Button
+                  data-cy='submit-button'
+                  className='btn'
+                  type='primary'
+                  htmlType='submit'
+                >
+                  Salvar
+                </Button>
+              </Col>
+              <Col span={8}>
+                <Button
+                  data-cy='cancel-button'
+                  className='btn-cancel'
+                  onClick={() => this._goBack()}
+                >
+                  Cancelar
+                </Button>
+              </Col>
+            </Row>
           </Form.Item>
         </Form>
-      </Modal>
-    );
+      );
+    } else {
+      return <Spin />
+    }
   }
 }
 

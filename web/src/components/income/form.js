@@ -3,10 +3,12 @@ import {
   Button,
   Form,
   Input,
-  Modal,
   InputNumber,
   DatePicker,
   Select,
+  Row,
+  Col,
+  Spin
 } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
@@ -14,29 +16,30 @@ import { fieldsToObject } from '../../util/util';
 const { Option } = Select;
 import 'moment/locale/pt-br';
 import locale from 'antd/es/date-picker/locale/pt_BR';
+import FormGeneric from '../formGeneric';
+import UrlRouter from '../../constants/UrlRouter';
+import IncomeIndexStore from '../../stores/income';
 @observer
-class IncomeForm extends React.Component {
+class IncomeForm extends FormGeneric {
   constructor(props) {
-    super(props);
+    super(props, UrlRouter.renda.index);
+    this.store = new IncomeIndexStore();
+  }
+
+  componentDidMount() {
+    const { id, actionType } = this.props;
+    this.store.initialize(id, actionType, this.store.treatObject);
   }
 
   render() {
-    const { store } = this.props;
-    return (
-      <Modal
-        title={
-          store.actionType === 'edit' ? 'Editar Registro' : 'Novo Registro'
-        }
-        visible={store.isModalVisible}
-        onCancel={store.disableModalAndActionType}
-        footer={null}
-      >
+    if (this.store.object) {
+      return (
         <Form
           {...layout}
-          onFinish={() => store.save()}
-          initialValues={store.object}
+          onFinish={() => this.store.save(this._goBack)}
+          initialValues={this.store.object}
           onFieldsChange={(_, allFields) =>
-            store.updateObject(fieldsToObject(allFields))
+            this.store.updateObject(fieldsToObject(allFields))
           }
           validateMessages={validateMessages}
           layout='vertical'
@@ -72,7 +75,7 @@ class IncomeForm extends React.Component {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
             >
-              {store.userList.map((user) => (
+              {this.store.userList.map((user) => (
                 <Option key={user.id} value={user.id}>
                   {`${user.nome} ${user.sobrenome}`}
                 </Option>
@@ -92,19 +95,34 @@ class IncomeForm extends React.Component {
               format={'MM/YYYY'}
             />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8 }}>
-            <Button
-              data-cy='submit-button'
-              className='btn'
-              type='primary'
-              htmlType='submit'
-            >
-              Salvar
-            </Button>
+          <Form.Item>
+            <Row>
+              <Col offset={6} span={8}>
+                <Button
+                  data-cy='submit-button'
+                  className='btn'
+                  type='primary'
+                  htmlType='submit'
+                >
+                  Salvar
+                </Button>
+              </Col>
+              <Col span={8}>
+                <Button
+                  data-cy='cancel-button'
+                  className='btn-cancel'
+                  onClick={() => this._goBack()}
+                >
+                  Cancelar
+                </Button>
+              </Col>
+            </Row>
           </Form.Item>
         </Form>
-      </Modal>
-    );
+      );
+    } else {
+      return <Spin />
+    }
   }
 }
 

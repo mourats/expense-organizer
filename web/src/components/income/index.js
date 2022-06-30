@@ -1,30 +1,24 @@
 import React from 'react';
-import { Table, Spin, Button, Divider, Row, Col } from 'antd';
+import { Table, Spin, Button, Divider, Row, Col, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import IncomeIndexStore from '../../stores/income/index';
 import IndexGeneric from '../indexGeneric';
-import IncomeForm from './form';
 import { moneyFormatter } from '../../util/util';
 import moment from 'moment';
+import UrlRouter from '../../constants/UrlRouter';
+import { Link } from 'react-router-dom';
 
 @observer
 class IncomeIndex extends IndexGeneric {
   constructor(props) {
     super(props);
     this.store = new IncomeIndexStore();
-    this.formModalContent = this.formModalContent.bind(this);
   }
 
   componentDidMount() {
     this.store.load(this.store.treatData);
     this.store.getUsersSelect();
-  }
-
-  formModalContent() {
-    if (this.store.isModalVisible) {
-      return <IncomeForm store={this.store} />;
-    }
   }
 
   render() {
@@ -65,7 +59,7 @@ class IncomeIndex extends IndexGeneric {
         render: (row) => {
           return (
             <div className='actions'>
-              {this.getDefaultEdit(row)}
+              {this.getDefaultEdit(UrlRouter.renda.edit.replace(':id', row.id))}
               {this.getDefaultDelete(row)}
             </div>
           );
@@ -78,14 +72,14 @@ class IncomeIndex extends IndexGeneric {
       <div className='scrollable'>
         <Row>
           <Col offset={21}>
-            <Button
-              data-cy='new-button'
-              type='primary'
-              icon={<PlusOutlined />}
-              onClick={() => this.showForm()}
-            >
-              Novo
-            </Button>
+            <Link to={UrlRouter.renda.new}>
+              <Tooltip title='Novo'>
+                <Button icon={<PlusOutlined />} data-cy='new-button'
+                  type='primary' >
+                  Novo
+                </Button>
+              </Tooltip>
+            </Link>
           </Col>
         </Row>
         <Divider />
@@ -94,7 +88,6 @@ class IncomeIndex extends IndexGeneric {
           dataSource={this.store.listaComKey}
           loading={this.store.loading}
         />
-        {this.formModalContent()}
       </div>
     );
   }

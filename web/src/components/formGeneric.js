@@ -6,6 +6,7 @@ class FormGeneric extends React.Component {
   constructor(props, urlGoBack) {
     super(props);
     this.urlGoBack = urlGoBack;
+    this._goBack = this._goBack.bind(this);
   }
 
   componentDidMount() {

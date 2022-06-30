@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Form, Input, Modal, Row, Spin } from 'antd';
+import { Button, Col, Form, Input, Row, Spin } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
@@ -19,7 +19,7 @@ class UserForm extends FormGeneric {
       return (
         <Form
           {...layout}
-          onFinish={() => this.store.save()}
+          onFinish={() => this.store.save(this._goBack)}
           initialValues={this.store.object}
           onFieldsChange={(_, allFields) =>
             this.store.updateObject(fieldsToObject(allFields))
@@ -61,7 +61,6 @@ class UserForm extends FormGeneric {
                   Cancelar
                 </Button>
               </Col>
-
             </Row>
           </Form.Item>
         </Form>

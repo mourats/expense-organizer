@@ -13,6 +13,7 @@ class ExpenseIndexStore extends IndexBase {
     super(ExpenseService);
     this.getUsersSelect = this.getUsersSelect.bind(this);
     this.treatData = this.treatData.bind(this);
+    this.treatObject = this.treatObject.bind(this);
     this.getTypePagamentListSelect = this.getTypePagamentListSelect.bind(this);
   }
 
@@ -60,6 +61,12 @@ class ExpenseIndexStore extends IndexBase {
       this.lista.forEach((elem) => {
         if (elem.periodo) elem.periodo = moment(elem.periodo);
       });
+  }
+  @action
+  treatObject() {
+    if (this.object && this.object.periodo) {
+      this.object.periodo = moment(this.object.periodo);
+    }
   }
 }
 export default ExpenseIndexStore;

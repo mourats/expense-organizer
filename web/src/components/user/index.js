@@ -58,7 +58,6 @@ class UserIndex extends IndexGeneric {
                 </Button>
               </Tooltip>
             </Link>
-
           </Col>
         </Row>
         <Divider />

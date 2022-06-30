@@ -1,10 +1,11 @@
 import React from 'react';
-import { Table, Spin, Button, Divider, Row, Col } from 'antd';
+import { Table, Spin, Button, Divider, Row, Col, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import UserIndexStore from '../../stores/user/index';
 import IndexGeneric from '../indexGeneric';
 import UrlRouter from '../../constants/UrlRouter';
+import { Link } from 'react-router-dom';
 
 @observer
 class UserIndex extends IndexGeneric {
@@ -49,14 +50,15 @@ class UserIndex extends IndexGeneric {
       <div className='scrollable'>
         <Row>
           <Col offset={21}>
-            <Button
-              data-cy='new-button'
-              type='primary'
-              icon={<PlusOutlined />}
-              onClick={() => this.showForm()}
-            >
-              Novo
-            </Button>
+            <Link to={UrlRouter.usuario.new}>
+              <Tooltip title='Novo'>
+                <Button icon={<PlusOutlined />} data-cy='new-button'
+                  type='primary' >
+                  Novo
+                </Button>
+              </Tooltip>
+            </Link>
+
           </Col>
         </Row>
         <Divider />

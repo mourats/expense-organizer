@@ -107,6 +107,16 @@ input[type='number'] {
   width: 50%;
 }
 
+.btn-cancel {
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  border: 0;
+  display: block;
+  font-size: 16px;
+  margin: 10px 0 30px;
+  width: 50%;
+}
+
 .btn-action {
   margin-left: 5px;
 }

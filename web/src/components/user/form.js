@@ -1,20 +1,17 @@
 import React from 'react';
-import { Button, Form, Input, Modal, Spin } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, Spin } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
 import { fieldsToObject } from '../../util/util';
 import UserIndexStore from '../../stores/user/index';
+import UrlRouter from '../../constants/UrlRouter';
+import FormGeneric from '../formGeneric';
 
 @observer
-class UserForm extends React.Component {
+class UserForm extends FormGeneric {
   constructor(props) {
-    super(props);
+    super(props, UrlRouter.usuario.index);
     this.store = new UserIndexStore();
-  }
-
-  componentDidMount() {
-    const { id, actionType } = this.props;
-    this.store.initialize(id, actionType);
   }
 
   render() {
@@ -43,15 +40,29 @@ class UserForm extends React.Component {
           <Form.Item name='email' label='Email' rules={[{ type: 'email' }]}>
             <Input placeholder='Digite o email' />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8 }}>
-            <Button
-              data-cy='submit-button'
-              className='btn'
-              type='primary'
-              htmlType='submit'
-            >
-              Salvar
-            </Button>
+          <Form.Item>
+            <Row>
+              <Col offset={6} span={8}>
+                <Button
+                  data-cy='submit-button'
+                  className='btn'
+                  type='primary'
+                  htmlType='submit'
+                >
+                  Salvar
+                </Button>
+              </Col>
+              <Col span={8}>
+                <Button
+                  data-cy='cancel-button'
+                  className='btn-cancel'
+                  onClick={() => this._goBack()}
+                >
+                  Cancelar
+                </Button>
+              </Col>
+
+            </Row>
           </Form.Item>
         </Form>
       );

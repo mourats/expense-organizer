@@ -30,12 +30,37 @@ class IndexBase {
   }
 
   @action
+  initialize(id, actionType, callback) {
+    this.actionType = actionType;
+    if (id) {
+      this.loading = true;
+      this.service
+        .get(id)
+        .then((response) => {
+          runInAction('Load Object', () => {
+            this.updateObject(response.data);
+            this.loading = false;
+            callback && callback();
+          });
+        })
+        .catch((error) => {
+          runInAction('Load Object Error', () => {
+            message.error(error.response.data);
+            this.loading = false;
+          });
+        });
+    } else {
+      this.object = {};
+    }
+  }
+
+  @action
   load(callback) {
     this.loading = true;
     this.service
       .getAll()
       .then((response) => {
-        runInAction('Load Object', () => {
+        runInAction('Load List Object', () => {
           this.lista.replace(response.data);
           this.loading = false;
           this.treatData && this.treatData();
@@ -43,7 +68,7 @@ class IndexBase {
         });
       })
       .catch((error) => {
-        runInAction('Load Object Error', () => {
+        runInAction('Load List Object Error', () => {
           message.error(error.response.data);
           this.loading = false;
         });

@@ -30,6 +30,8 @@ class ExpenseForm extends FormGeneric {
   componentDidMount() {
     const { id, actionType } = this.props;
     this.store.initialize(id, actionType, this.store.treatObject);
+    this.store.getUsersSelect();
+    this.store.getTypePagamentListSelect();
   }
 
   render() {

@@ -19,7 +19,7 @@ class UserForm extends FormGeneric {
       return (
         <Form
           {...layout}
-          onFinish={() => this.store.save(this._goBack)}
+          onFinish={() => this.store.save2(this._goBack)}
           initialValues={this.store.object}
           onFieldsChange={(_, allFields) =>
             this.store.updateObject(fieldsToObject(allFields))

@@ -14,6 +14,10 @@ class UserIndex extends IndexGeneric {
     this.store = new UserIndexStore();
   }
 
+  showConfirm() {
+    throw Error();
+  }
+
   render() {
     const columns = [
       {
@@ -38,7 +42,7 @@ class UserIndex extends IndexGeneric {
               {this.getDefaultEdit(
                 UrlRouter.usuario.edit.replace(':id', row.id)
               )}
-              {this.getDefaultDelete2(row)}
+              {this.getDefaultDelete(row)}
             </div>
           );
         },
@@ -52,7 +56,7 @@ class UserIndex extends IndexGeneric {
           <Col offset={21}>
             <Link to={UrlRouter.usuario.new}>
               <Tooltip title='Novo'>
-                <Button icon={<PlusOutlined />} data-cy='new-button'
+                <Button icon={<PlusOutlined />} data-cy='new-button' onClick={() => console.error('Teste fault')}
                   type='primary' >
                   Novo
                 </Button>

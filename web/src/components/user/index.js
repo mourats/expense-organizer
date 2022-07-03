@@ -38,7 +38,7 @@ class UserIndex extends IndexGeneric {
               {this.getDefaultEdit(
                 UrlRouter.usuario.edit.replace(':id', row.id)
               )}
-              {this.getDefaultDelete(row)}
+              {this.getDefaultDelete2(row)}
             </div>
           );
         },

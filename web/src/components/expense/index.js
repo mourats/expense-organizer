@@ -71,7 +71,7 @@ class ExpenseIndex extends IndexGeneric {
         render: (row) => {
           return (
             <div className='actions'>
-              {this.getDefaultEdit(UrlRouter.despesa.edit.replace(':id', row.id))}
+              {this.getDefaultEdit2(UrlRouter.despesa.edit.replace(':id', row.id))}
               {this.getDefaultDelete(row)}
             </div>
           );

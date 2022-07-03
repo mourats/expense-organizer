@@ -56,7 +56,7 @@ class UserIndex extends IndexGeneric {
           <Col offset={21}>
             <Link to={UrlRouter.usuario.new}>
               <Tooltip title='Novo'>
-                <Button icon={<PlusOutlined />} data-cy='new-button' onClick={() => console.error('Teste fault')}
+                <Button icon={<PlusOutlined />} data-cy='new-button' onClick={() => console.error('Error: Teste fault')}
                   type='primary' >
                   Novo
                 </Button>

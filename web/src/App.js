@@ -6,12 +6,13 @@ import RotasTipoPagamento from './routes/RotasTipoPagamento';
 import NavBar from './NavBar';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch } from 'react-router';
+import { Switch, matchPath } from 'react-router';
 import { Route } from 'react-router-dom';
 import UrlRouter from './constants/UrlRouter';
 import history from './history';
 import RotasDespesa from './routes/RotasDespesa';
 import RotasRenda from './routes/RotasRenda';
+import { getRoutesObjects } from './util/util';
 
 class App extends React.Component {
   constructor() {
@@ -19,6 +20,10 @@ class App extends React.Component {
     this.state = {
       abaAtiva: 'welcome',
     };
+  }
+  componentDidMount() {
+    window.location.getCurrentPath = () =>
+      getRoutesObjects(UrlRouter).find(route => matchPath(window.location.pathname, route))?.path;
   }
   render() {
     return (

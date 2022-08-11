@@ -3,6 +3,7 @@ import { Button, Tooltip, Modal } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
+import { hashCodePath } from '../util/util';
 
 @observer
 class IndexGeneric extends React.Component {
@@ -41,7 +42,7 @@ class IndexGeneric extends React.Component {
     return (
       <Link to={urlEdit}>
         <Tooltip title='Editar'>
-          <Button data-cy='edit-button' icon={<EditOutlined />} />
+          <Button data-cy={`${hashCodePath()}-edit-button`} icon={<EditOutlined />} />
         </Tooltip>
       </Link>
     );
@@ -50,7 +51,7 @@ class IndexGeneric extends React.Component {
   getDefaultDelete(row) {
     return (
       <Button
-        data-cy='delete-button'
+      data-cy={`${hashCodePath()}-delete-button`}
         className='btn-action'
         icon={<DeleteOutlined />}
         onClick={() => this.showConfirm(row)}

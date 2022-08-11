@@ -37,3 +37,34 @@ export const moneyFormatter = (num) => {
     p[1];
   return 'R$ ' + (negative ? '-' + format : format);
 };
+
+export const getRoutesObjects = object => {
+  const routes = [];
+  const getRoutesObjectsRecusiv = object => {
+    const keys = Object.keys(object);
+    keys.forEach(key => {
+      const value = object[key];
+      if (typeof value === 'string') {
+        routes.push(value);
+        return;
+      }
+      getRoutesObjectsRecusiv(value);
+    });
+  };
+  getRoutesObjectsRecusiv(object);
+  return routes.map(item => {
+    const obj = { path: item, exact: true };
+    return obj;
+  });
+};
+
+export const hashCodePath = () => {
+  const value = window.location?.getCurrentPath && window.location?.getCurrentPath();
+  let hash = 0,
+    i = 0,
+    len = value?.length || 0;
+  while (i < len) {
+    hash = ((hash << 5) - hash + value.charCodeAt(i++)) << 0;
+  }
+  return hash + 2147483647 + 1;
+};

@@ -12,7 +12,7 @@ import {
 } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
-import { fieldsToObject } from '../../util/util';
+import { fieldsToObject, hashCodePath } from '../../util/util';
 const { Option } = Select;
 import 'moment/locale/pt-br';
 import locale from 'antd/es/date-picker/locale/pt_BR';
@@ -100,7 +100,7 @@ class IncomeForm extends FormGeneric {
             <Row>
               <Col offset={6} span={8}>
                 <Button
-                  data-cy='submit-button'
+                  data-cy={`${hashCodePath()}-submit-button`}
                   className='btn'
                   type='primary'
                   htmlType='submit'
@@ -110,7 +110,7 @@ class IncomeForm extends FormGeneric {
               </Col>
               <Col span={8}>
                 <Button
-                  data-cy='cancel-button'
+                  data-cy={`${hashCodePath()}-cancel-button`}
                   className='btn-cancel'
                   onClick={() => this._goBack()}
                 >

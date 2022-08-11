@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input, InputNumber, Spin, Row, Col } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
-import { fieldsToObject } from '../../util/util';
+import { fieldsToObject, hashCodePath } from '../../util/util';
 import FormGeneric from '../formGeneric';
 import UrlRouter from '../../constants/UrlRouter';
 import PaymentTypeIndexStore from '../../stores/paymentType';
@@ -42,7 +42,7 @@ class PaymentTypeForm extends FormGeneric {
             <Row>
               <Col offset={6} span={8}>
                 <Button
-                  data-cy='submit-button'
+                  data-cy={`${hashCodePath()}-submit-button`}
                   className='btn'
                   type='primary'
                   htmlType='submit'
@@ -52,7 +52,7 @@ class PaymentTypeForm extends FormGeneric {
               </Col>
               <Col span={8}>
                 <Button
-                  data-cy='cancel-button'
+                  data-cy={`${hashCodePath()}-cancel-button`}
                   className='btn-cancel'
                   onClick={() => this._goBack()}
                 >

@@ -6,6 +6,7 @@ import PaymentTypeIndexStore from '../../stores/paymentType/index';
 import IndexGeneric from '../indexGeneric';
 import UrlRouter from '../../constants/UrlRouter';
 import { Link } from 'react-router-dom';
+import { hashCodePath } from '../../util/util';
 
 @observer
 class PaymentTypeIndex extends IndexGeneric {
@@ -45,7 +46,7 @@ class PaymentTypeIndex extends IndexGeneric {
           <Col offset={21}>
             <Link to={UrlRouter.tipoPagamento.new}>
               <Tooltip title='Novo'>
-                <Button icon={<PlusOutlined />} data-cy='new-button'
+                <Button icon={<PlusOutlined />} data-cy={`${hashCodePath()}-new-button`}
                   type='primary' >
                   Novo
                 </Button>

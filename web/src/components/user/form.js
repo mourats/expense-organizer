@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Col, Form, Input, Row, Spin } from 'antd';
 import { observer } from 'mobx-react';
 import { validateMessages, layout } from '../../constants/DadosEstaticos';
-import { fieldsToObject } from '../../util/util';
+import { fieldsToObject, hashCodePath } from '../../util/util';
 import UserIndexStore from '../../stores/user/index';
 import UrlRouter from '../../constants/UrlRouter';
 import FormGeneric from '../formGeneric';
@@ -44,7 +44,7 @@ class UserForm extends FormGeneric {
             <Row>
               <Col offset={6} span={8}>
                 <Button
-                  data-cy='submit-button'
+                  data-cy={`${hashCodePath()}-submit-button`}
                   className='btn'
                   type='primary'
                   htmlType='submit'
@@ -54,7 +54,7 @@ class UserForm extends FormGeneric {
               </Col>
               <Col span={8}>
                 <Button
-                  data-cy='cancel-button'
+                  data-cy={`${hashCodePath()}-cancel-button`}
                   className='btn-cancel'
                   onClick={() => this._goBack()}
                 >

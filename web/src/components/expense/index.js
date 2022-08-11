@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import ExpenseIndexStore from '../../stores/expense/index';
 import IndexGeneric from '../indexGeneric';
-import { moneyFormatter } from '../../util/util';
+import { hashCodePath, moneyFormatter } from '../../util/util';
 import moment from 'moment';
 import UrlRouter from '../../constants/UrlRouter';
 import { Link } from 'react-router-dom';
@@ -86,7 +86,7 @@ class ExpenseIndex extends IndexGeneric {
           <Col offset={21}>
             <Link to={UrlRouter.despesa.new}>
               <Tooltip title='Novo'>
-                <Button icon={<PlusOutlined />} data-cy='new-button'
+                <Button icon={<PlusOutlined />} data-cy={`${hashCodePath()}-new-button`}
                   type='primary' >
                   Novo
                 </Button>

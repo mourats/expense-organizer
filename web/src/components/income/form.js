@@ -46,17 +46,18 @@ class IncomeForm extends FormGeneric {
           layout='vertical'
         >
           <Form.Item name='nome' label='Nome' rules={[{ required: true }]}>
-            <Input placeholder='Digite o nome' />
+            <Input placeholder='Digite o nome' data-cy={`${hashCodePath()}-input-nome`}/>
           </Form.Item>
           <Form.Item
             name='descricao'
             label='Descrição'
             rules={[{ required: true }]}
           >
-            <Input placeholder='Digite o descrição' />
+            <Input placeholder='Digite o descrição' data-cy={`${hashCodePath()}-input-descricao`}/>
           </Form.Item>
           <Form.Item name='valor' label='Valor' rules={[{ required: true }]}>
             <InputNumber
+              data-cy={`${hashCodePath()}-input-valor`}
               placeholder='Digite o valor'
               style={{ width: '100%' }}
               parser={(value) => value.replace(/,([^,]*)$/, '.$1')}
@@ -68,6 +69,7 @@ class IncomeForm extends FormGeneric {
             rules={[{ required: true }]}
           >
             <Select
+              data-cy={`${hashCodePath()}-select-usuario`}
               showSearch
               style={{ width: '100%' }}
               placeholder='Selecione um usuário'
@@ -94,6 +96,7 @@ class IncomeForm extends FormGeneric {
               style={{ width: '30%' }}
               locale={locale}
               format={'MM/YYYY'}
+              data-cy={`${hashCodePath()}-picker-periodo`}
             />
           </Form.Item>
           <Form.Item>

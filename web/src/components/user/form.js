@@ -28,17 +28,17 @@ class UserForm extends FormGeneric {
           layout='vertical'
         >
           <Form.Item name='nome' label='Nome' rules={[{ required: true }]}>
-            <Input placeholder='Digite o nome' />
+            <Input placeholder='Digite o nome' data-cy={`${hashCodePath()}-input-nome`} />
           </Form.Item>
           <Form.Item
             name='sobrenome'
             label='Sobrenome'
             rules={[{ required: true }]}
           >
-            <Input placeholder='Digite o sobrenome' />
+            <Input placeholder='Digite o sobrenome' data-cy={`${hashCodePath()}-input-sobrenome`} />
           </Form.Item>
-          <Form.Item name='email' label='Email' rules={[{ type: 'email' }]}>
-            <Input placeholder='Digite o email' />
+          <Form.Item name='email' label='Email' rules={[{ type: 'email' }]} >
+            <Input placeholder='Digite o email' data-cy={`${hashCodePath()}-input-email`} />
           </Form.Item>
           <Form.Item>
             <Row>

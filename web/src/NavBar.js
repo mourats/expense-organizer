@@ -8,19 +8,19 @@ class NavBar extends Component {
     return (
       <nav className='navbar'>
         <ul className='menu'>
-          <li>
+          <li data-cy={`welcome`}>
             <Link to={UrlRouter.home}>Welcome</Link>
           </li>
-          <li>
+          <li data-cy={`usuarios`}>
             <Link to={UrlRouter.usuario.index}>Usuários</Link>
           </li>
-          <li>
+          <li data-cy={`tipo-pagamento`}>
             <Link to={UrlRouter.tipoPagamento.index}>Tipo de Pagamento</Link>
           </li>
-          <li>
+          <li data-cy={`despesa`}>
             <Link to={UrlRouter.despesa.index}>Despesa</Link>
           </li>
-          <li>
+          <li data-cy={`renda`}>
             <Link to={UrlRouter.renda.index}>Renda</Link>
           </li>
         </ul>

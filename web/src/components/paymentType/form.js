@@ -27,7 +27,7 @@ class PaymentTypeForm extends FormGeneric {
           layout='vertical'
         >
           <Form.Item name='nome' label='Nome' rules={[{ required: true }]}>
-            <Input placeholder='Digite o nome' />
+            <Input placeholder='Digite o nome' data-cy={`${hashCodePath()}-input-nome`}/>
           </Form.Item>
           <Form.Item
             name='diaVencimentoPadrao'
@@ -36,6 +36,7 @@ class PaymentTypeForm extends FormGeneric {
           >
 
             <InputNumber
+              data-cy={`${hashCodePath()}-input-dia-vencimento`}
               placeholder='Digite o dia de vencimento' />
           </Form.Item>
           <Form.Item>
